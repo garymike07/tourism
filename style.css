@@ -6,6 +6,7 @@
 }
 
 :root {
+    /* Light theme colors */
     --primary-color: #2d5a27;
     --secondary-color: #4a7c59;
     --accent-color: #8fbc8f;
@@ -17,17 +18,24 @@
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
+    --gradient-primary: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+    --gradient-secondary: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
 }
 
 [data-theme="dark"] {
+    /* Dark theme colors */
     --primary-color: #4a7c59;
-    --secondary-color: #2d5a27;
-    --accent-color: #6b9b6b;
+    --secondary-color: #6b9b6b;
+    --accent-color: #8fbc8f;
     --text-color: #e0e0e0;
     --text-light: #b0b0b0;
     --bg-color: #1a1a1a;
     --bg-light: #2a2a2a;
     --border-color: #404040;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --gradient-primary: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    --gradient-secondary: linear-gradient(135deg, #4a7c59 0%, #6b9b6b 100%);
 }
 
 body {
@@ -36,12 +44,36 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     transition: var(--transition);
+    overflow-x: hidden;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
 }
 
 /* Navigation */
@@ -54,10 +86,16 @@ body {
     z-index: 1000;
     padding: 1rem 0;
     transition: var(--transition);
+    border-bottom: 1px solid var(--border-color);
 }
 
 [data-theme="dark"] .navbar {
     background: rgba(26, 26, 26, 0.95);
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: var(--shadow);
 }
 
 .nav-container {
@@ -76,6 +114,12 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-menu {
@@ -89,6 +133,23 @@ body {
     color: var(--text-color);
     font-weight: 500;
     transition: var(--transition);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
 }
 
 .nav-menu a:hover {
@@ -108,6 +169,14 @@ body {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.phone-link:hover {
+    background: var(--bg-light);
+    color: var(--primary-color);
 }
 
 .theme-toggle {
@@ -118,10 +187,17 @@ body {
     cursor: pointer;
     color: var(--text-color);
     transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .theme-toggle:hover {
-    background: var(--bg-light);
+    background: var(--primary-color);
+    color: white;
+    transform: rotate(180deg);
 }
 
 .btn-primary {
@@ -134,11 +210,29 @@ body {
     font-weight: 500;
     transition: var(--transition);
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
 }
 
 .btn-primary:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .btn-secondary {
@@ -151,11 +245,29 @@ body {
     font-weight: 500;
     transition: var(--transition);
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--primary-color);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.btn-secondary:hover::before {
+    width: 100%;
 }
 
 .btn-secondary:hover {
-    background: var(--primary-color);
     color: white;
+    transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -168,17 +280,36 @@ body {
     font-weight: 500;
     transition: var(--transition);
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--primary-color);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.btn-outline:hover::before {
+    width: 100%;
 }
 
 .btn-outline:hover {
-    background: var(--primary-color);
     color: white;
+    transform: translateY(-2px);
 }
 
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
 }
 
 .hamburger span {
@@ -189,10 +320,22 @@ body {
     transition: var(--transition);
 }
 
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: var(--gradient-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -201,6 +344,10 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
+}
+
+[data-theme="dark"] .hero {
+    background: var(--gradient-secondary);
 }
 
 .hero::before {
@@ -214,22 +361,39 @@ body {
     opacity: 0.3;
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/safari_adventure_1.jpg') center/cover;
+    opacity: 0.2;
+    z-index: 1;
+}
+
 .hero-content {
     z-index: 2;
     max-width: 800px;
     margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 .hero-buttons {
@@ -237,17 +401,20 @@ body {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.6s both;
 }
 
 .hero-images {
     z-index: 2;
     max-width: 600px;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 .hero-slide {
     display: none;
     text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .hero-slide.active {
@@ -257,6 +424,11 @@ body {
 .hero-slide h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.hero-slide p {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .special-offer-banner {
@@ -270,17 +442,82 @@ body {
     border-radius: 25px;
     font-weight: bold;
     animation: pulse 2s infinite;
+    z-index: 3;
+    backdrop-filter: blur(5px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.05); }
+    0%, 100% { 
+        transform: translateX(-50%) scale(1); 
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.05); 
+        box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* About Section */
 .about {
     padding: 80px 0;
     background: var(--bg-light);
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/safari_adventure_2.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.about > * {
+    position: relative;
+    z-index: 2;
 }
 
 .about h2 {
@@ -288,6 +525,7 @@ body {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    animation: fadeInUp 1s ease-out;
 }
 
 .about > .container > p {
@@ -296,6 +534,7 @@ body {
     max-width: 800px;
     margin: 0 auto 3rem;
     color: var(--text-light);
+    animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .features {
@@ -312,10 +551,38 @@ body {
     border-radius: 15px;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    animation: slideInLeft 1s ease-out;
+}
+
+.feature:nth-child(2) {
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.feature:nth-child(3) {
+    animation: slideInRight 1s ease-out 0.4s both;
+}
+
+.feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.feature:hover::before {
+    opacity: 0.1;
 }
 
 .feature:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-hover);
 }
 
@@ -323,18 +590,48 @@ body {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.feature:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--secondary-color);
 }
 
 .feature h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.feature p {
+    color: var(--text-light);
+    transition: var(--transition);
 }
 
 /* Special Offers */
 .offers {
     padding: 80px 0;
     background: var(--bg-color);
+    position: relative;
+}
+
+.offers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/safari_adventure_3.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.offers > * {
+    position: relative;
+    z-index: 2;
 }
 
 .offers h2 {
@@ -366,10 +663,28 @@ body {
     position: relative;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    overflow: hidden;
+}
+
+.offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.offer-card:hover::before {
+    opacity: 0.1;
 }
 
 .offer-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-hover);
 }
 
@@ -383,6 +698,19 @@ body {
     border-radius: 20px;
     font-weight: bold;
     font-size: 1.1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
 .offer-card h3 {
@@ -399,6 +727,7 @@ body {
     display: inline-block;
     margin: 1rem 0;
     font-weight: bold;
+    font-family: 'Courier New', monospace;
 }
 
 .offer-validity {
@@ -410,6 +739,24 @@ body {
 .accommodations {
     padding: 80px 0;
     background: var(--bg-light);
+    position: relative;
+}
+
+.accommodations::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/dandeli_accommodation_1.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.accommodations > * {
+    position: relative;
+    z-index: 2;
 }
 
 .accommodations h2 {
@@ -439,10 +786,11 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    position: relative;
 }
 
 .accommodation-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-hover);
 }
 
@@ -450,6 +798,7 @@ body {
     height: 200px;
     background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
     position: relative;
+    overflow: hidden;
 }
 
 .accommodation-image::after {
@@ -459,6 +808,12 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateY(-10px); }
 }
 
 .accommodation-content {
@@ -516,6 +871,7 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    cursor: pointer;
 }
 
 .gallery-item:hover {
@@ -527,6 +883,7 @@ body {
     height: 250px;
     background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
     position: relative;
+    overflow: hidden;
 }
 
 .gallery-image::after {
@@ -536,6 +893,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
 }
 
 .gallery-caption {
@@ -548,12 +906,36 @@ body {
     padding: 1rem;
     text-align: center;
     font-weight: 500;
+    transform: translateY(100%);
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
 }
 
 /* Activities */
 .activities {
     padding: 80px 0;
     background: var(--bg-light);
+    position: relative;
+}
+
+.activities::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/dandeli_rafting_1.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.activities > * {
+    position: relative;
+    z-index: 2;
 }
 
 .activities h2 {
@@ -584,10 +966,29 @@ body {
     text-align: center;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.activity-card:hover::before {
+    opacity: 0.1;
 }
 
 .activity-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-hover);
 }
 
@@ -595,6 +996,12 @@ body {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.activity-card:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--secondary-color);
 }
 
 .activity-card h3 {
@@ -612,6 +1019,24 @@ body {
 .attractions {
     padding: 80px 0;
     background: var(--bg-color);
+    position: relative;
+}
+
+.attractions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/dandeli_safari_1.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.attractions > * {
+    position: relative;
+    z-index: 2;
 }
 
 .attractions h2 {
@@ -633,10 +1058,29 @@ body {
     padding: 2rem;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.attraction-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.attraction-card:hover::before {
+    opacity: 0.1;
 }
 
 .attraction-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-hover);
 }
 
@@ -655,12 +1099,33 @@ body {
     color: var(--primary-color);
     font-weight: bold;
     margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Testimonials */
 .testimonials {
     padding: 80px 0;
     background: var(--bg-light);
+    position: relative;
+}
+
+.testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/dandeli_trekking_1.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.testimonials > * {
+    position: relative;
+    z-index: 2;
 }
 
 .testimonials h2 {
@@ -690,15 +1155,35 @@ body {
     padding: 2rem;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.testimonial-card:hover::before {
+    opacity: 0.1;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-hover);
 }
 
 .testimonial-content {
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
 .testimonial-content p {
@@ -706,23 +1191,34 @@ body {
     color: var(--text-light);
     font-size: 1.1rem;
     line-height: 1.6;
+    position: relative;
+    padding: 0 1rem;
 }
 
 .testimonial-content p::before {
     content: '"';
-    font-size: 2rem;
+    font-size: 3rem;
     color: var(--primary-color);
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-family: serif;
 }
 
 .testimonial-content p::after {
     content: '"';
-    font-size: 2rem;
+    font-size: 3rem;
     color: var(--primary-color);
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    font-family: serif;
 }
 
 .testimonial-author h4 {
     color: var(--primary-color);
     margin-bottom: 0.25rem;
+    font-size: 1.1rem;
 }
 
 .testimonial-author span {
@@ -733,20 +1229,45 @@ body {
 /* Newsletter */
 .newsletter {
     padding: 80px 0;
-    background: var(--primary-color);
+    background: var(--gradient-primary);
     color: white;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .newsletter {
+    background: var(--gradient-secondary);
+}
+
+.newsletter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/dandeli_kayaking_1.jpg') center/cover;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.newsletter > * {
+    position: relative;
+    z-index: 2;
 }
 
 .newsletter h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .newsletter > .container > p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .newsletter-form {
@@ -754,14 +1275,24 @@ body {
     max-width: 500px;
     margin: 0 auto 1rem;
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .newsletter-form input {
     flex: 1;
+    min-width: 250px;
     padding: 12px 20px;
     border: none;
     border-radius: 25px;
     font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.newsletter-form input:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
 }
 
 .newsletter-form button {
@@ -773,15 +1304,35 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover::before {
+    left: 100%;
 }
 
 .newsletter-form button:hover {
     background: var(--bg-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .newsletter-disclaimer {
     font-size: 0.9rem;
     opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 /* Footer */
@@ -789,6 +1340,24 @@ body {
     padding: 60px 0 40px;
     background: var(--bg-light);
     text-align: center;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/safari_adventure_4.jpg') center/cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.footer > * {
+    position: relative;
+    z-index: 2;
 }
 
 .footer-content h2 {
@@ -822,11 +1391,35 @@ body {
     text-decoration: none;
     font-size: 1.5rem;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-social a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-color);
+    transform: scale(0);
+    transition: var(--transition);
+    border-radius: 50%;
+}
+
+.footer-social a:hover::before {
+    transform: scale(1);
 }
 
 .footer-social a:hover {
-    background: var(--secondary-color);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.footer-social a i {
+    position: relative;
+    z-index: 2;
 }
 
 /* Popup */
@@ -844,6 +1437,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: var(--transition);
+    backdrop-filter: blur(5px);
 }
 
 .popup-overlay.active {
@@ -861,6 +1455,7 @@ body {
     position: relative;
     transform: scale(0.8);
     transition: var(--transition);
+    box-shadow: var(--shadow-hover);
 }
 
 .popup-overlay.active .popup-content {
@@ -869,17 +1464,23 @@ body {
 
 .popup-close {
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 10px;
+    right: 15px;
     background: none;
     border: none;
     font-size: 2rem;
     cursor: pointer;
     color: var(--text-light);
+    transition: var(--transition);
+}
+
+.popup-close:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
 }
 
 .popup-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .popup-header img {
@@ -888,123 +1489,89 @@ body {
     margin-bottom: 1rem;
 }
 
-.popup-header h3 {
+.popup-content h3 {
     color: var(--primary-color);
+    margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
-.popup-body h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.popup-body p {
+.popup-content p {
     color: var(--text-light);
-    margin-bottom: 2rem;
-}
-
-.popup-btn {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 12px;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-/* Widgets */
-.chat-widget, .whatsapp-widget {
-    position: fixed;
-    bottom: 20px;
-    z-index: 1500;
-}
-
-.chat-widget {
-    right: 80px;
-}
-
-.whatsapp-widget {
-    right: 20px;
-}
-
-.chat-button, .whatsapp-widget a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
-    box-shadow: var(--shadow-hover);
-    transition: var(--transition);
-}
-
-.chat-button {
-    background: var(--primary-color);
-    border: none;
-    cursor: pointer;
-}
-
-.whatsapp-widget a {
-    background: #25d366;
-}
-
-.chat-button:hover, .whatsapp-widget a:hover {
-    transform: scale(1.1);
+    margin-bottom: 1.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 2rem;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        margin: 1rem 0;
+    }
+
+    .nav-actions {
+        gap: 0.5rem;
+    }
+
+    .phone-link {
         display: none;
     }
-    
+
     .hamburger {
         display: flex;
     }
-    
+
     .hero h1 {
         font-size: 2.5rem;
     }
-    
+
+    .hero p {
+        font-size: 1rem;
+    }
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .newsletter-form {
         flex-direction: column;
+        align-items: center;
     }
-    
-    .nav-actions {
-        gap: 0.5rem;
+
+    .newsletter-form input {
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
     }
-    
-    .phone-link span {
-        display: none;
-    }
-    
+
+    .features,
+    .offers-grid,
     .accommodations-grid,
-    .activities-grid {
+    .activities-grid,
+    .attractions-grid,
+    .testimonials-grid {
         grid-template-columns: 1fr;
     }
-    
-    .offers-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .features {
-        grid-template-columns: 1fr;
-    }
-    
-    .chat-widget {
-        right: 20px;
-        bottom: 90px;
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
@@ -1012,25 +1579,111 @@ body {
     .container {
         padding: 0 15px;
     }
-    
+
     .hero h1 {
         font-size: 2rem;
     }
-    
-    .hero p {
-        font-size: 1rem;
+
+    .about h2,
+    .offers h2,
+    .accommodations h2,
+    .gallery h2,
+    .activities h2,
+    .attractions h2,
+    .testimonials h2,
+    .newsletter h2,
+    .footer-content h2 {
+        font-size: 2rem;
     }
-    
-    section {
-        padding: 60px 0;
-    }
-    
-    h2 {
-        font-size: 2rem !important;
-    }
-    
-    .popup-content {
+
+    .feature,
+    .offer-card,
+    .accommodation-card,
+    .activity-card,
+    .attraction-card,
+    .testimonial-card {
         padding: 1.5rem;
     }
+
+    .special-offer-banner {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.loading:nth-child(1) { animation-delay: 0.1s; }
+.loading:nth-child(2) { animation-delay: 0.2s; }
+.loading:nth-child(3) { animation-delay: 0.3s; }
+.loading:nth-child(4) { animation-delay: 0.4s; }
+
+/* Scroll animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced hover effects */
+.enhanced-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.enhanced-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition);
+}
+
+.enhanced-hover:hover::before {
+    left: 100%;
+}
+
+/* Floating elements */
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating:nth-child(2) {
+    animation-delay: -2s;
+}
+
+.floating:nth-child(3) {
+    animation-delay: -4s;
+}
+
+/* Parallax effect */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Custom selection */
+::selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary-color);
+    color: white;
 }
 
