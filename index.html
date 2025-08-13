@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dandeli Adventure Resorts</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-mountain"></i>
+                <span>Kenya Safari Adventures</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#accommodation">Accommodation</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+918277385225" class="phone-link">
+                    <i class="fas fa-phone"></i>
+                    +91 8277385225
+                </a>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#book" class="btn-primary">Book Now</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Safari Lodge Accommodation</h1>
+            <p>Luxury eco-friendly lodges with stunning views of Mount Kenya and wildlife</p>
+            <div class="hero-buttons">
+                <a href="#book" class="btn-primary">Book Your Adventure</a>
+                <a href="tel:+918277385225" class="btn-secondary">Call Now</a>
+            </div>
+        </div>
+        <div class="hero-images">
+            <div class="hero-slide active">
+                <h3>Mount Kenya Panorama</h3>
+                <p>Experience breathtaking views of Africa's second highest peak and surrounding highlands</p>
+            </div>
+            <div class="hero-slide">
+                <h3>Great Migration Safari</h3>
+                <p>Witness the world's greatest wildlife spectacle in Maasai Mara National Reserve</p>
+            </div>
+            <div class="hero-slide">
+                <h3>Amboseli Elephants</h3>
+                <p>Encounter massive elephant herds with Mount Kilimanjaro as your backdrop</p>
+            </div>
+        </div>
+        <div class="special-offer-banner">
+            <span>Book now just at KES 11,992! Limited time offer</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Experience Wildlife Paradise in Kenya</h2>
+            <p>Nestled in the heart of East Africa, Kenya Safari Adventures offers an immersive experience in the world's most famous wildlife destinations. Our eco-friendly lodges combine luxury with wilderness, providing the perfect backdrop for your African safari adventure.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Eco-Friendly Resort</h3>
+                    <p>Committed to sustainable tourism practices with minimal environmental impact.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety First Adventures</h3>
+                    <p>All activities conducted by certified professionals with top-tier safety equipment.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-award"></i>
+                    <h3>Award-Winning Hospitality</h3>
+                    <p>Recognized for exceptional service and authentic local experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="offers">
+        <div class="container">
+            <h2>Special Offers & Discounts</h2>
+            <p>Take advantage of our exclusive deals and save on your next adventure in Dandeli.</p>
+            
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-badge">10% OFF</div>
+                    <h3>Early Bird Special</h3>
+                    <p>Book at least 30 days in advance and get an exclusive discount.</p>
+                    <div class="offer-code">Code: EARLYBIRD10</div>
+                    <div class="offer-validity">Valid till: Dec 31, 2023</div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-badge">25% OFF</div>
+                    <h3>Summer Adventure</h3>
+                    <p>Escape the heat with our summer special adventure packages.</p>
+                    <div class="offer-code">Code: SUMMER25</div>
+                    <div class="offer-validity">Valid till: Jun 30, 2023</div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-badge">20% OFF</div>
+                    <h3>Monsoon Magic</h3>
+                    <p>Experience the thrill of rafting during monsoon with our special package.</p>
+                    <div class="offer-code">Code: MONSOON20</div>
+                    <div class="offer-validity">Valid till: Sep 30, 2023</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodations -->
+    <section id="accommodation" class="accommodations">
+        <div class="container">
+            <h2>Stunning Accommodations</h2>
+            <p>Relax in comfort after your adventure in our thoughtfully designed spaces that blend with nature.</p>
+            
+            <div class="accommodations-grid">
+                <div class="accommodation-card">
+                    <div class="accommodation-image"></div>
+                    <div class="accommodation-content">
+                        <h3>Safari Lodge</h3>
+                        <p>Wake up to wildlife sounds in luxury safari lodge</p>
+                        <div class="price">KES 19,992 per night</div>
+                        <a href="#" class="btn-outline">View Details</a>
+                    </div>
+                </div>
+                <div class="accommodation-card">
+                    <div class="accommodation-image"></div>
+                    <div class="accommodation-content">
+                        <h3>Luxury Tented Camp</h3>
+                        <p>Elevated tented camp with panoramic savanna views</p>
+                        <div class="price">KES 31,992 per night</div>
+                        <a href="#" class="btn-outline">View Details</a>
+                    </div>
+                </div>
+                <div class="accommodation-card">
+                    <div class="accommodation-image"></div>
+                    <div class="accommodation-content">
+                        <h3>Eco Cottage</h3>
+                        <p>Eco-friendly cottage with modern amenities</p>
+                        <div class="price">KES 15,992 per night</div>
+                        <a href="#" class="btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2>Explore Our Gallery</h2>
+            <p>Take a visual journey through the stunning landscapes and wildlife experiences that await you in Kenya's premier destinations</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">Kenyan Safari Lodge</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">Mount Kenya View</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">Tana River Rafting Adventure</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">Maasai Mara Wildlife Migration</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">Lake Nakuru Flamingos</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-caption">Amboseli Elephants</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities -->
+    <section id="activities" class="activities">
+        <div class="container">
+            <h2>Featured Experiences</h2>
+            <p>Discover the thrill and tranquility of our curated adventures in the heart of Dandeli's wilderness.</p>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <i class="fas fa-water"></i>
+                    <h3>River Rafting</h3>
+                    <p>Navigate the thrilling rapids of the Kali River with our expert guides.</p>
+                    <a href="#" class="btn-outline">Explore</a>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-binoculars"></i>
+                    <h3>Wildlife Safari</h3>
+                    <p>Explore the rich biodiversity of Dandeli Wildlife Sanctuary.</p>
+                    <a href="#" class="btn-outline">Explore</a>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-hiking"></i>
+                    <h3>Jungle Trekking</h3>
+                    <p>Embark on guided treks through pristine forest trails.</p>
+                    <a href="#" class="btn-outline">Explore</a>
+                </div>
+                <div class="activity-card">
+                    <i class="fas fa-swimmer"></i>
+                    <h3>Kayaking</h3>
+                    <p>Paddle through serene waters and enjoy the peaceful surroundings.</p>
+                    <a href="#" class="btn-outline">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions -->
+    <section class="attractions">
+        <div class="container">
+            <h2>Local Attractions</h2>
+            
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <h3>Syntheri Rock</h3>
+                    <p>A monolithic rock structure carved by the Kaneri river, located in the heart of the Western Ghats.</p>
+                    <div class="distance">15 km from resort</div>
+                    <a href="#" class="btn-outline">Learn more</a>
+                </div>
+                <div class="attraction-card">
+                    <h3>Kavala Caves</h3>
+                    <p>Ancient limestone caves with spectacular stalactites and stalagmites formations.</p>
+                    <div class="distance">25 km from resort</div>
+                    <a href="#" class="btn-outline">Learn more</a>
+                </div>
+                <div class="attraction-card">
+                    <h3>Ulavi Temple</h3>
+                    <p>An ancient shrine dedicated to Chandika Devi, nestled amidst serene natural beauty.</p>
+                    <div class="distance">30 km from resort</div>
+                    <a href="#" class="btn-outline">Learn more</a>
+                </div>
+                <div class="attraction-card">
+                    <h3>Supa Dam</h3>
+                    <p>One of the major dams built across the Kali River, offering panoramic views of the Western Ghats.</p>
+                    <div class="distance">20 km from resort</div>
+                    <a href="#" class="btn-outline">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Guest Experiences</h2>
+            <p>Don't just take our word for it. Here's what our guests have to say about their stay.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The Maasai Mara safari was absolutely incredible! Seeing the great migration up close was a once-in-a-lifetime experience."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Michael Ochieng</h4>
+                        <span>Nairobi, Kenya</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The safari lodge exceeded our expectations. Waking up to elephants at the watering hole was magical. Perfect honeymoon destination!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Grace Wanjiku</h4>
+                        <span>Mombasa, Kenya</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The Amboseli elephant experience was breathtaking! With Mount Kilimanjaro in the background, it was like a National Geographic documentary."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>David Kamau</h4>
+                        <span>Kisumu, Kenya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Get Exclusive Updates</h2>
+            <p>Subscribe to our newsletter and be the first to know about new adventures and seasonal experiences.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+            <p class="newsletter-disclaimer">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h2>Your Adventure Awaits!</h2>
+                <p>Book your stay now and create memories that will last a lifetime.</p>
+                <a href="#book" class="btn-primary">Book Your Adventure Now</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Special Offer Popup -->
+    <div id="specialOfferPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" id="closePopup">&times;</button>
+            <div class="popup-header">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDM3QzI5LjM4ODggMzcgMzcgMjkuMzg4OCAzNyAyMEM0NyAxMC42MTEyIDI5LjM4ODggMyAyMCAzQzEwLjYxMTIgMyAzIDEwLjYxMTIgMyAyMEMzIDI5LjM4ODggMTAuNjExMiAzNyAyMCAzN1oiIGZpbGw9IiNGRkQ3MDAiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo8L3N2Zz4K" alt="Special Offer">
+                <h3>Special Offer! 🎉</h3>
+            </div>
+            <div class="popup-body">
+                <h2>Day Package at Just KES 6,393!</h2>
+                <p>Experience the best of Kenya Safari Adventures at an unbeatable price</p>
+                <button class="btn-primary popup-btn">Book Now on WhatsApp</button>
+                <button class="btn-secondary popup-btn" id="maybeLater">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" aria-label="Chat with us">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- WhatsApp Widget -->
+    <div class="whatsapp-widget">
+        <a href="https://wa.me/918277385225" aria-label="Contact us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
